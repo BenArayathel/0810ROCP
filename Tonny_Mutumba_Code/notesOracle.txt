@@ -1,0 +1,25 @@
+- primitive values
+- make a class
+- Print out
+- methods and classes 
+- commenting out
+
+Arrays 
+-int[] arr = {1,2,3}
+Cast the array from a double 
+Arrays are immutable 
+
+Class 
+This is alogical entity 
+Object
+physical entity
+
+Function: Takes in arguments, excutes logic returns value
+Procedure: takes in arguments, excutes logic, not return value
+Methods: takes in arguments, returns value
+
+OOP
+Encapsulation: wrapping data/code (getters, setters)-
+
+  
+ 
