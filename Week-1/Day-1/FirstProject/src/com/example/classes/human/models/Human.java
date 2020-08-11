@@ -6,9 +6,11 @@ public class Human {
 //	private Organ[] myOrgans;
 	private String name ;
 	private double weight ;
-	public static double pi = 3.14;
+	public static double pi = 3.14; //Static value 
 	
-	//By default, the JVM creates a constructor for us if none exist
+	/*	By default, the JVM creates a constructor for us if none exist
+	 * 	If a constructor is already specified, the JVM will no longer bother 
+	 */
 	
 	public Human() {
 		// no args constructor 
@@ -30,11 +32,12 @@ public class Human {
 		return this.weight;
 	}
 	
-	public static void setPi(double newValue) {
+	public static void setPi(double newValue) { //static method can only reference static properties. 
+//		this.pi = newValue; //Can't use keyword "this" inside of a static method
 		pi = newValue;
 	}
 	
-	public static double getPi() {
+	public static double getPi() { //static method can only reference static properties. 
 		return pi;
 	}
 	
