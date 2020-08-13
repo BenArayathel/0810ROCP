@@ -1,4 +1,7 @@
 package com.example.existence;
+import com.examle.inheritance.model.Animal;
+import com.examle.inheritance.model.Dog;
+import com.examle.inheritance.model.Mammal;
 import com.example.model.DemoObject;
 
 public class MainDriver {
@@ -79,7 +82,9 @@ public class MainDriver {
 		 * 
 		 */
 		
+		Object doggy = new Dog();
 		
+		((Dog) doggy).chase();
 		
 		
 	}
