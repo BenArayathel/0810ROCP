@@ -13,6 +13,7 @@ public class Driver {
 		// TODO Auto-generated method stub
 		
 		//GENERICS - ensures type safety
+		// "Allow a type or method to operate on object while providing compile-time type safety". introduced in Java 5.0
 		
 		ArrayList<Student> sList = new ArrayList<Student>();
 		

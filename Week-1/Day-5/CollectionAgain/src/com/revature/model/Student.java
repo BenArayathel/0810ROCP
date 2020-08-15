@@ -1,6 +1,12 @@
 package com.revature.model;
 
-public class Student implements Comparable<Student>{
+public class Student implements Comparable<Student>{ 
+	
+	/*
+	 * Implementing Comparable means that we provide our class a way to compare with each instance of the class. 
+	 * 
+	 * This allows the Collections.sort() method to order our List by using the compareTo() method.
+	 */
 	
 	private int id;
 	private String name;
@@ -36,11 +42,12 @@ public class Student implements Comparable<Student>{
 	
 	
 	@Override
-	public int compareTo(Student s) {
+	public int compareTo(Student s) { //This is the method that comparable asks us to implement
 		
 		int value = 0;
 	
 		return -(this.id - s.id); // -1000 or -1, 0 , +1000 or +1
+								//It does not care what the magnitude is, just if it is positive, 0 or negative. 
 	}
 	
 	
