@@ -21,5 +21,19 @@ Methods: takes in arguments, returns value
 OOP
 Encapsulation: wrapping data/code (getters, setters)-
 
+//		//create a character array from the given string
+//		char [] str = string.toCharArray();
+//		//create a temp in the array
+//		char temp;
+//		int firstChar = 0; //first character position
+//		if (firstChar < str.length-1 ) {
+//			temp = str[firstChar]; // put the first character in the temp
+//			str[firstChar]  = str[str.length-1]; //first char in last position
+//			str[str.length-1] = temp;
+//			str[str.length-1]--;
+//			firstChar++;
+//		}
+//		return new String(str);
+
   
  
