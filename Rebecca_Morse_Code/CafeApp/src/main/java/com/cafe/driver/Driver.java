@@ -14,18 +14,20 @@ public class Driver {
 	public static final String WELCOME_MESSAGE = "Welcome to Cat Cafe! To place an order, Enter your Name:";
 	public static final String GREETING = "Hello, ";
 	public static final String ORDER_PROMPT = "What would you like to order?";
-	public static final String MENU_TITLE = "The Cat Cafe Menu:";
-	public static final String SELECT_PROMPT = "To select an Item, enter the number in parentheses.";
+	public static final String MENU_TITLE = "The Cat Cafe Menu:\n";
+	public static final String SELECT_PROMPT = "\nTo select an Item, enter the number in parentheses.";
 	public static final String QUANTITY_PROMPT_ONE = "How many ";
 	public static final String QUANTITY_PROMPT_TWO = "s would you like?";
-	public static final String DISPLAY_ORDER_TITLE = "Here is your order so far:";
+	public static final String DISPLAY_ORDER_TITLE = "Here is your order:";
 	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(A) To Add Items \n(R) To Remove Items \n(C) To Check out.";
 	public static final String ADD_ITEMS_PROMPT = "What would you like to add to your order?";
 	public static final String REMOVE_ITEMS_PROMPT = "What would you like to remove from your order?";
 	public static final String ORDER_TOTAL_PREFIX = "Total for order:";
-	public static final String FINALIZE_ORDER_PROMPT = "Enter (U) To Update or change your order \nEnter (P) To Pay and complete your order.";
-	public static final String THANK_YOU = "Thank you for visiting the Cat Cafe, Come again soon!";
+//	public static final String FINALIZE_ORDER_PROMPT = "Enter (U) To Update or change your order \nEnter (P) To Pay and complete your order.";
+	public static final String THANK_YOU = "Thank you for visiting the Cat Cafe, ";
+	public static final String COME_AGAIN = ", Come again soon!";
 	public static final String ENTER_VALID_OPTION = "Please enter a valid option";
+	
 
 	private static String action;
 	static int currentOrderNumber = 1;
@@ -38,7 +40,7 @@ public class Driver {
 
 		Customer customer = establishCustomer(takeInput(sc));
 
-		communicate(GREETING + " " + customer.getName() + "!");
+		communicate(GREETING + " " + customer.getName() + "!\n");
 
 		Menu menu = makeMenu();
 
@@ -56,7 +58,7 @@ public class Driver {
 				presentMenuAndUpdateOrder(sc,customer, menu);
 				break;
 			case "C": stillOrdering = false;
-				checkout();
+				checkout(customer);
 				break;
 			default:
 				communicate(ENTER_VALID_OPTION);
@@ -95,9 +97,10 @@ public class Driver {
 
 	}
 
-	private static void checkout() {
-//		communicate(ORDER_TOTAL_PREFIX + "   $" + total)
-		communicate(THANK_YOU);
+	private static void checkout(Customer customer) {
+		Order order = customer.getOrder();
+		displayOrder(order);
+		communicate(THANK_YOU + customer.getName() + COME_AGAIN);
 	}
 	private static void displayOrder(Order order) {
 		communicate(DISPLAY_ORDER_TITLE);
