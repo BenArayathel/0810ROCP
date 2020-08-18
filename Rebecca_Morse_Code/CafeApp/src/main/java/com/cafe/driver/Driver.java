@@ -16,7 +16,8 @@ public class Driver {
 	public static final String ORDER_PROMPT = "What would you like to order?";
 	public static final String MENU_TITLE = "The Cat Cafe Menu:";
 	public static final String SELECT_PROMPT = "To select an Item, enter the number in parentheses.";
-	public static final String QUANTITY_PROMPT = "Enter a quantity.";
+	public static final String QUANTITY_PROMPT_ONE = "How many ";
+	public static final String QUANTITY_PROMPT_TWO = "s would you like?";
 	public static final String DISPLAY_ORDER_TITLE = "Here is your order so far:";
 	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(A) To Add Items \n(R) To Remove Items \n(C) To Check out.";
 	public static final String ADD_ITEMS_PROMPT = "What would you like to add to your order?";
@@ -37,17 +38,22 @@ public class Driver {
 
 		Customer customer = establishCustomer(takeInput(sc));
 
+		communicate(GREETING + " " + customer.getName() + "!");
+
 		Menu menu = makeMenu();
 
-		presentMenuAndAddToOrder(sc, customer, menu);
+		presentMenuAndUpdateOrder(sc, customer, menu);
 		boolean stillOrdering = true;
 		while (stillOrdering) {
 			String selection = takeInput(sc);
 			switch (selection.toUpperCase()) {
 			case "A":
-				presentMenuAndAddToOrder(sc, customer, menu);
+				communicate(ADD_ITEMS_PROMPT);
+				presentMenuAndUpdateOrder(sc, customer, menu);
 				break;
 			case "R":
+				communicate(REMOVE_ITEMS_PROMPT);
+				presentMenuAndUpdateOrder(sc,customer, menu);
 				break;
 			case "C": stillOrdering = false;
 				break;
@@ -64,13 +70,13 @@ public class Driver {
 
 	}
 
-	private static void presentMenuAndAddToOrder(Scanner sc, Customer customer, Menu menu) {
-		presentMenu(customer);
+	private static void presentMenuAndUpdateOrder(Scanner sc, Customer customer, Menu menu) {
+		presentMenu();
 
 		int itemKey = Integer.parseInt(takeInput(sc));
 		FoodItem item = menu.getMenu().get(itemKey);
 
-		communicate(QUANTITY_PROMPT);
+		communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
 		int quantity = Integer.parseInt(takeInput(sc));
 
 		addItemToOrder(customer.getOrder(), item, quantity);
@@ -99,8 +105,7 @@ public class Driver {
 		orderMap.put(item, quantity);
 	}
 
-	private static void presentMenu(Customer customer) {
-		communicate(GREETING + " " + customer.getName() + "!");
+	private static void presentMenu() {
 		communicate(MENU_TITLE);
 		displayMenu(makeMenu());
 		communicate(SELECT_PROMPT);
@@ -136,7 +141,7 @@ public class Driver {
 		FoodItem veggieBurger = new FoodItem("Veggie Burger", "Entree",
 				"Our House-made Veggie Burgers, served with hand-cut fries.", 10);
 		FoodItem pasta = new FoodItem("Pasta Supreme", "Entree", "House made pasta with the freshest Pesto around.", 7);
-		FoodItem asparagus = new FoodItem("Asparagus Spears", "Side", "Only the freshest!", 17);
+		FoodItem asparagus = new FoodItem("Asparagus Spear", "Side", "Only the freshest!", 17);
 		FoodItem cococadoShake = new FoodItem("Cococado Vegan Milkshake", "Dessert",
 				"Made with rice dream ice cream, bananas, coconut and avocado. You know you love it!", 4);
 		FoodItem pie = new FoodItem("Pie", "Dessert", "Fresh seasonal pie.  Current variety: peach", 5);
