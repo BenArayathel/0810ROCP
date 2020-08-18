@@ -56,30 +56,34 @@ public class Driver {
 				presentMenuAndUpdateOrder(sc,customer, menu);
 				break;
 			case "C": stillOrdering = false;
+				checkout();
 				break;
 			default:
 				communicate(ENTER_VALID_OPTION);
 				break;
 			}
 		}
-		System.out.println("Oops! I haven't written any more program yet.");
-
-		// each method - will change state or return??
-
 		sc.close();
 
 	}
 
 	private static void presentMenuAndUpdateOrder(Scanner sc, Customer customer, Menu menu) {
 		presentMenu();
-
+		
 		int itemKey = Integer.parseInt(takeInput(sc));
-		FoodItem item = menu.getMenu().get(itemKey);
+		switch(itemKey) {
+			case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+				FoodItem item = menu.getMenu().get(itemKey);
+				communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
+				int quantity = Integer.parseInt(takeInput(sc));
+				updateItemQtyOnOrder(customer.getOrder(), item, quantity);
+				break;
+			default:
+				communicate(ENTER_VALID_OPTION);
+				break;
+		}
 
-		communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
-		int quantity = Integer.parseInt(takeInput(sc));
 
-		addItemToOrder(customer.getOrder(), item, quantity);
 
 		displayOrder(customer.getOrder());
 
@@ -91,16 +95,30 @@ public class Driver {
 
 	}
 
+	private static void checkout() {
+//		communicate(ORDER_TOTAL_PREFIX + "   $" + total)
+		communicate(THANK_YOU);
+	}
 	private static void displayOrder(Order order) {
 		communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			communicate(
 					entry.getValue() + " " + entry.getKey().getName() + "	$" + entry.getKey().getCost() + " (each)");
 		}
-		communicate(ORDER_TOTAL_PREFIX + "[insert order total here]");
+		float total = getOrderTotal(order);
+		communicate(ORDER_TOTAL_PREFIX + "$" + total);
 	}
 
-	private static void addItemToOrder(Order order, FoodItem item, int quantity) {
+	private static float getOrderTotal(Order order) {
+		float total = 0;
+		for (Map.Entry<FoodItem,Integer> entry: order.getOrderContents().entrySet()) {
+			float itemTotal = entry.getKey().getCost() * entry.getValue();
+			total = total + itemTotal;
+		}
+		return total;
+	}
+
+	private static void updateItemQtyOnOrder(Order order, FoodItem item, int quantity) {
 		Map<FoodItem, Integer> orderMap = order.getOrderContents();
 		orderMap.put(item, quantity);
 	}
@@ -162,7 +180,7 @@ public class Driver {
 	public static void displayMenu(Menu menu) {
 		for (Map.Entry<Integer, FoodItem> entry : menu.getMenu().entrySet()) {
 			System.out.println(
-					"(" + entry.getKey() + ") " + entry.getValue().getName() + " $" + entry.getValue().getCost());
+					"(" + entry.getKey() + ") " + entry.getValue().getName() + " - " + entry.getValue().getDescription() + "	$" + entry.getValue().getCost());
 		}
 	}
 
