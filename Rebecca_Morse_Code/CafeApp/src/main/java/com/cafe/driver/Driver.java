@@ -45,7 +45,9 @@ public class Driver {
 		Menu menu = makeMenu();
 
 		presentMenuAndUpdateOrder(sc, customer, menu);
+		
 		boolean stillOrdering = true;
+		
 		while (stillOrdering) {
 			String selection = takeInput(sc);
 			switch (selection.toUpperCase()) {
