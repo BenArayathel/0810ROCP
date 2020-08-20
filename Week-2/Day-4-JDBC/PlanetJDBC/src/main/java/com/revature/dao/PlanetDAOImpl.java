@@ -19,7 +19,7 @@ public class PlanetDAOImpl implements PlanetDAO{
 		
 		String sql = "INSERT INTO planets (planet_name, planet_description, has_rings, number_of_moons) values "
 				+ "(?,?,?,?)";
-		
+				
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, p.getName());
@@ -39,7 +39,22 @@ public class PlanetDAOImpl implements PlanetDAO{
 
 	@Override
 	public void updatePlanet(Planet p) {
-		// TODO Auto-generated method stub
+	try(Connection conn = ConnectionFactory.getConnection()){
+			
+			String sql = "UPDATE planets SET planet_name = ?, planet_description = ?, has_rings = ?, number_of_moons = ? WHERE planet_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, p.getName());
+			ps.setString(2, p.getDescription());
+			ps.setBoolean(3, p.isRings());
+			ps.setInt(4, p.getNumberOfMoons());
+			ps.setInt(5, p.getId());
+			
+			ps.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -48,9 +63,9 @@ public class PlanetDAOImpl implements PlanetDAO{
 		
 		List<Planet> planets = new ArrayList<>();
 		
-		Connection conn = ConnectionFactory.getConnection();
+		Connection conn = ConnectionFactory.getConnection(); //establising a connection
 		
-		String sql = " SELECT * FROM planets";
+		String sql = " SELECT * FROM planets" ; //sql statement 
 		
 		try {
 			Statement s = conn.createStatement(); //Allows us to send SQL statements
@@ -69,6 +84,7 @@ public class PlanetDAOImpl implements PlanetDAO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 		
 		return planets;
@@ -76,13 +92,49 @@ public class PlanetDAOImpl implements PlanetDAO{
 
 	@Override
 	public Planet selectPlanetByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+List<Planet> planets  = new ArrayList<>(); //I might not have a unique constraint, so be prepared for a set.
+		
+		try(Connection conn = ConnectionFactory.getConnection()){ //have a guess (best practice)
+			String sql = "SELECT * FROM planets WHERE planet_name = ? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			
+			
+			
+			while(rs.next()) {
+				planets.add(new Planet(
+				rs.getInt(1),
+				rs.getString(2),
+				rs.getString(3),
+				rs.getBoolean(4),
+				rs.getInt("number_of_moons")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return planets.get(0); //return the first value of the set
 	}
 
 	@Override
 	public void deletePlanet(Planet p) {
-		// TODO Auto-generated method stub
+		Connection conn = ConnectionFactory.getConnection();
+		
+		String sql = "DELETE FROM planets where planet_id = ?";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, p.getId());
+			ps.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

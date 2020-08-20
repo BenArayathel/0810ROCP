@@ -32,16 +32,26 @@ public class ConnectionFactory {
 	 */
 	
 	// "jdbc:postgresql://[HOST]/[DATABASE]
-	private static String url = "jdbc:postgresql://localhost/postgres";
-	private static String username = "postgres";
-	private static String password = "p4ssw0rd";
+	
+	/*
+	 * Setting environment variables 
+	 * 
+	 * https://www.java.com/en/download/help/path.xml
+	 */
+	
+	
+	private static final String URL = "jdbc:postgresql://localhost/postgres";
+
+	private static final String USERNAME = System.getenv("DB_USERNAME");
+	private static final String PASSWORD = System.getenv("DB_PASSWORD");
+	
 	
 	public static Connection getConnection() {
 		
 		Connection conn = null;
 		
 		try {
-			conn = DriverManager.getConnection(url,username,password);
+			conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

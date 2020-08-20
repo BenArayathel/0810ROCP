@@ -1,12 +1,24 @@
 package com.revature.service;
 
+import com.revature.model.Planet;
+
 public class PlanetStuff {
 
 	public void destroyAllPlanets() {
 		
+		/*	List planets = pDao.selectAllPlanets();
+		 * 
+		 * for(Planet i : planets){
+		 * 	pDao.delete(i);
+		 */
+		
 	}
 	
-	public void celeberatePlanet() {
+	public void celeberatePlanet(String name) {
+		
+		/*
+		 * syso( "Happy Birthday" + selectPlanetbyName(name));
+		 */
 		
 	}
 	
@@ -18,4 +30,21 @@ public class PlanetStuff {
 		
 	}
 	
+	public void reengineerPlanet(Planet p) {
+		
+		/*
+		 * change the ring stauts to false or true 
+		 */
+		
+		/*
+		 * selectPlanetByName(p.getName())
+		 * 
+		 * if(null){
+		 *  syso(planet does not exist)
+		 *  
+		 *  else{
+		 *  updatePlanet(p)
+		 */
+		
+	}
 }

@@ -14,9 +14,9 @@ public class Driver {
 		
 		List<Planet> myListOfPlanet = pDao.selectAllPlanets();
 		
-		pDao.insertPlanet(new Planet(0, "Test","Test", false, 100));
+//		pDao.insertPlanet(new Planet(0, "Test","Test", false, 100));
 		
-//		System.out.println(myListOfPlanet);
+		System.out.println(myListOfPlanet);
 	}
 
 }
