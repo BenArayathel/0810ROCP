@@ -108,7 +108,8 @@ public class Driver {
 		communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			communicate(
-					entry.getValue() + " " + entry.getKey().getName() + "	$" + entry.getKey().getCost() + " (each)");
+					entry.getValue() + " " + entry.getKey().getName() + 
+					"	$" + entry.getKey().getCost() + " (each)");
 		}
 		float total = getOrderTotal(order);
 		communicate(ORDER_TOTAL_PREFIX + "$" + total);
@@ -166,7 +167,7 @@ public class Driver {
 		FoodItem pasta = new FoodItem("Pasta Supreme", "Entree", "House made pasta with the freshest Pesto around.", 7);
 		FoodItem asparagus = new FoodItem("Asparagus Spear", "Side", "Only the freshest!", 17);
 		FoodItem cococadoShake = new FoodItem("Cococado Vegan Milkshake", "Dessert",
-				"Made with rice dream ice cream, bananas, coconut and avocado. You know you love it!", 4);
+				"Made with rice dream ice cream, bananas, coconut and avocado.", 4);
 		FoodItem pie = new FoodItem("Pie", "Dessert", "Fresh seasonal pie.  Current variety: peach", 5);
 
 		menuContents.put(1, water);
@@ -185,7 +186,8 @@ public class Driver {
 	public static void displayMenu(Menu menu) {
 		for (Map.Entry<Integer, FoodItem> entry : menu.getMenu().entrySet()) {
 			System.out.println(
-					"(" + entry.getKey() + ") " + entry.getValue().getName() + " - " + entry.getValue().getDescription() + "	$" + entry.getValue().getCost());
+					"(" + entry.getKey() + ") " + entry.getValue().getName() + 
+					" - " + entry.getValue().getDescription() + "	$" + entry.getValue().getCost());
 		}
 	}
 
