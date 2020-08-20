@@ -39,8 +39,27 @@ public class PlanetDAOImpl implements PlanetDAO{
 
 	@Override
 	public void updatePlanet(Planet p) {
-		// TODO Auto-generated method stub
+		Connection conn = ConnectionFactory.getConnection();
 		
+		System.out.println(p.isRings());
+		
+		String sql = "UPDATE planets set planet_name = (?), planet_description = (?), has_rings = (?), number_of_moons = (?)"
+				+ "where planet_id = '" + p.getId() + "'";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, p.getName());
+			ps.setString(2, p.getDescription());
+			ps.setBoolean(3, p.isRings());
+			ps.setInt(4, p.getNumberOfMoons());
+			
+			ps.execute();
+			
+			//SQL injection "Johnny Drop table students"
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -76,18 +95,93 @@ public class PlanetDAOImpl implements PlanetDAO{
 
 	@Override
 	public Planet selectPlanetByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection conn = ConnectionFactory.getConnection();
+		
+		Planet planet = null;
+		String sql = "SELECT * FROM planets where planet_name = '" + name + "'";
+		
+		try {
+			Statement s = conn.createStatement(); //Allows us to send SQL statements
+			ResultSet rs = s.executeQuery(sql); //We are executing our SQL statement
+			
+			if (rs.next()) {
+				planet = new Planet(
+				rs.getInt("planet_id"),
+				rs.getString("planet_name"),
+				rs.getString(3),
+				rs.getBoolean(4),
+				rs.getInt("number_of_moons")
+						);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return planet;
 	}
 
 	@Override
-	public void deletePlanet(Planet p) {
-		// TODO Auto-generated method stub
+	public String deletePlanet(String name) {
+		
+		Connection conn = ConnectionFactory.getConnection();
+		
+		String sql = "DELETE FROM planets where planet_name = '" + name + "'";
+		
+		try {
+			Statement s = conn.createStatement(); //Allows us to send SQL statements
+			s.executeUpdate(sql); //We are executing our SQL statement
+			
+//			while(rs.next()) {
+//				planets.add(new Planet(
+//				rs.getInt("planet_id"),
+//				rs.getString("planet_name"),
+//				rs.getString(3),
+//				rs.getBoolean(4),
+//				rs.getInt("number_of_moons")
+//						));
+//			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Planet " + name + " is deleted.";
 		
 	}
 
 	@Override
 	public Planet selectPlanetById(int id) {
+		
+		Connection conn = ConnectionFactory.getConnection();
+		
+		Planet planet = null;
+		String sql = "SELECT * FROM planets where planet_id = '" + id + "'";
+		
+		try {
+			Statement s = conn.createStatement(); //Allows us to send SQL statements
+			ResultSet rs = s.executeQuery(sql); //We are executing our SQL statement
+			
+			if (rs.next()) {
+				planet = new Planet(
+				rs.getInt("planet_id"),
+				rs.getString("planet_name"),
+				rs.getString(3),
+				rs.getBoolean(4),
+				rs.getInt("number_of_moons")
+						);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return planet;
+	}
+
+	@Override
+	public Planet updatePlanet(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

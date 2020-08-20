@@ -11,12 +11,23 @@ public class Driver {
 	public static void main(String[] args) {
 	
 		PlanetDAO pDao = new PlanetDAOImpl();
+		Planet earth = new Planet();
+		earth.setName("Earth");
+		earth.setDescription("home of humans");
+		earth.setNumberOfMoons(1);
+		earth.setRings(true);
 		
-		List<Planet> myListOfPlanet = pDao.selectAllPlanets();
+//		List<Planet> myListOfPlanets = pDao.selectAllPlanets();
 		
-		pDao.insertPlanet(new Planet(0, "Test","Test", false, 100));
+//		Planet planetInfo = pDao.selectPlanetByName("Jupiter");
 		
-//		System.out.println(myListOfPlanet);
+//		Planet planetInfo = pDao.selectPlanetById(3);
+		
+		pDao.updatePlanet(earth);
+		
+//		pDao.deletePlanet("alt_earth");
+				
+//		System.out.println(planetInfo);
 	}
 
 }

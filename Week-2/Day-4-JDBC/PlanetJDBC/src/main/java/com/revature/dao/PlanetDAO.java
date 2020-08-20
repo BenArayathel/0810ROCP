@@ -32,6 +32,7 @@ public interface PlanetDAO {
 	public Planet selectPlanetById(int id);
 	
 	//DELETE
-	public void deletePlanet(Planet p);
+	public String deletePlanet(String name);
 
+	public Planet updatePlanet(int i);
 }
