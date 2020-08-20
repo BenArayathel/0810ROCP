@@ -41,10 +41,10 @@ public class PlanetDAOImpl implements PlanetDAO{
 	public void updatePlanet(Planet p) {
 		Connection conn = ConnectionFactory.getConnection();
 		
-		System.out.println(p.isRings());
+//		System.out.println(p.isRings());
 		
-		String sql = "UPDATE planets set planet_name = (?), planet_description = (?), has_rings = (?), number_of_moons = (?)"
-				+ "where planet_id = '" + p.getId() + "'";
+		String sql = "UPDATE planets set planet_name = ?, planet_description = ?, has_rings = ?, number_of_moons = ?"
+				+ "where planet_name = ?";
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -52,6 +52,7 @@ public class PlanetDAOImpl implements PlanetDAO{
 			ps.setString(2, p.getDescription());
 			ps.setBoolean(3, p.isRings());
 			ps.setInt(4, p.getNumberOfMoons());
+			ps.setString(5, p.getName());
 			
 			ps.execute();
 			

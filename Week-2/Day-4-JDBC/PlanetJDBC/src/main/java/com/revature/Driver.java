@@ -11,6 +11,7 @@ public class Driver {
 	public static void main(String[] args) {
 	
 		PlanetDAO pDao = new PlanetDAOImpl();
+		
 		Planet earth = new Planet();
 		earth.setName("Earth");
 		earth.setDescription("home of humans");
