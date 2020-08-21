@@ -40,7 +40,7 @@ public class cafeDAOImplementation implements cafeDAOInterface{
 		Connection connection = ConnectionLayer.getConnection();
 		
 		try {
-			String sql = " SELECT * from food_item";
+			String sql = "SELECT * from food_item";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			

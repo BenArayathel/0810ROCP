@@ -1,6 +1,7 @@
 package com.cafe.models;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class FoodItem {
 	private int id;
@@ -17,8 +18,12 @@ public class FoodItem {
 	}
 
 
-	public FoodItem(int int1, String string, String string2, String string3, float f) {
-		// TODO Auto-generated constructor stub
+	public FoodItem(int id, String name, String type, String description, float f) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.description = description;
+		this.cost = f;
 	}
 
 	public int getId() {
@@ -59,6 +64,13 @@ public class FoodItem {
 
 	public void setCost(float cost) {
 		this.cost = cost;
+	}
+
+
+	@Override
+	public String toString() {
+		return "FoodItem [id=" + id + ", name=" + name + ", type=" + type + ", description=" + description + ", cost="
+				+ cost + "]";
 	}
 
 }
