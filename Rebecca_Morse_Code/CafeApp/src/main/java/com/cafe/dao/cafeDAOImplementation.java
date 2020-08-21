@@ -1,9 +1,16 @@
 package com.cafe.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cafe.models.FoodItem;
 import com.cafe.models.Order;
+import com.cafe.util.ConnectionLayer;
 
 public class cafeDAOImplementation implements cafeDAOInterface{
 
@@ -28,7 +35,31 @@ public class cafeDAOImplementation implements cafeDAOInterface{
 	@Override
 	public List<FoodItem> SelectAllFoodItems() {
 		// TODO Auto-generated method stub
-		return null;
+		List<FoodItem> allFoodItems = new ArrayList<>();
+		
+		Connection connection = ConnectionLayer.getConnection();
+		
+		
+		try {
+			String sql = " select * from food_item";
+			Statement stmt = connection.createStatement();
+			ResultSet results = stmt.executeQuery(sql);
+			
+			while(results.next()) {
+				allFoodItems.add(new FoodItem(
+						results.getInt(1),
+						results.getString(2),
+						results.getString(3),
+						results.getString(4),
+						results.getFloat(5)
+						));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return allFoodItems;
 	}
 
 	@Override

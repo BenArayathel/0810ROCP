@@ -1,5 +1,7 @@
 package com.cafe.models;
 
+import java.math.BigDecimal;
+
 public class FoodItem {
 	private int id;
 	private String name;
@@ -7,11 +9,16 @@ public class FoodItem {
 	private String description;
 	private float cost;
 
-	public FoodItem(String name, String type, String description, float cost) {
+	public FoodItem(String name, String type, String description, float f) {
 		this.name = name;
 		this.type = type;
 		this.description = description;
-		this.cost = cost;
+		this.cost = f;
+	}
+
+
+	public FoodItem(int int1, String string, String string2, String string3, float f) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
