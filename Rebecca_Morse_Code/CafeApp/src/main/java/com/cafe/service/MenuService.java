@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cafe.models.FoodItem;
 import com.cafe.models.Menu;
+import com.cafe.util.Communication;
 
 public class MenuService {
 	
@@ -37,19 +38,15 @@ public class MenuService {
 
 		return menu;
 	}
-
-	public static void communicate(String string) {
-		System.out.println(string);
-	}
 	
 	public static void displayMenu(Menu menu) {
-		communicate(MENU_TITLE);
+		Communication.communicate(MENU_TITLE);
 
 		for (Map.Entry<Integer, FoodItem> entry : menu.getMenu().entrySet()) {
 			System.out.println("(" + entry.getKey() + ") " + entry.getValue().getName() + " - "
 					+ entry.getValue().getDescription() + "	$" + entry.getValue().getCost());
 		}
-		communicate(SELECT_PROMPT);
+		Communication.communicate(SELECT_PROMPT);
 	}
 
 }

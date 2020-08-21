@@ -8,6 +8,7 @@ import com.cafe.models.Customer;
 import com.cafe.models.FoodItem;
 import com.cafe.models.Menu;
 import com.cafe.models.Order;
+import com.cafe.util.*;
 
 public class OrderTaker {
 
@@ -34,11 +35,11 @@ public class OrderTaker {
 			String selection = takeInput(sc);
 			switch (selection.toUpperCase()) {
 			case "A":
-				communicate(ADD_ITEMS_PROMPT);
+				Communication.communicate(ADD_ITEMS_PROMPT);
 				askForNextOrderItem(sc, customer, menu);
 				break;
 			case "R":
-				communicate(REMOVE_ITEMS_PROMPT);
+				Communication.communicate(REMOVE_ITEMS_PROMPT);
 				askForNextOrderItem(sc, customer, menu);
 				break;
 			case "C":
@@ -46,7 +47,7 @@ public class OrderTaker {
 				checkout(customer);
 				break;
 			default:
-				communicate(ENTER_VALID_OPTION);
+				Communication.communicate(ENTER_VALID_OPTION);
 				break;
 			}
 		}
@@ -65,12 +66,12 @@ public class OrderTaker {
 		case 6:
 		case 7:
 			FoodItem item = menu.getMenu().get(itemKey);
-			communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
+			Communication.communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
 			int quantity = Integer.parseInt(takeInput(sc));
 			updateItemQtyOnOrder(customer.getOrder(), item, quantity);
 			break;
 		default:
-			communicate(ENTER_VALID_OPTION);
+			Communication.communicate(ENTER_VALID_OPTION);
 			break;
 		}
 
@@ -87,11 +88,7 @@ public class OrderTaker {
 	private static void checkout(Customer customer) {
 		Order order = customer.getOrder();
 		displayOrder(order);
-		communicate(THANK_YOU + customer.getName() + COME_AGAIN);
-	}
-
-	public static void communicate(String string) {
-		System.out.println(string);
+		Communication.communicate(THANK_YOU + customer.getName() + COME_AGAIN);
 	}
 
 	private static void updateItemQtyOnOrder(Order order, FoodItem item, int quantity) {
@@ -100,17 +97,17 @@ public class OrderTaker {
 	}
 
 	private static void displayOrder(Order order) {
-		communicate(DISPLAY_ORDER_TITLE);
+		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
-			communicate(
+			Communication.communicate(
 					entry.getValue() + " " + entry.getKey().getName() + "	$" + entry.getKey().getCost() + " (each)");
 		}
 		float total = getOrderTotal(order);
-		communicate(ORDER_TOTAL_PREFIX + "$" + total);
+		Communication.communicate(ORDER_TOTAL_PREFIX + "$" + total);
 	}
 	
 	private static void promptforNextStep() {
-		communicate(CONTINUE_ORDER_PROMPT);
+		Communication.communicate(CONTINUE_ORDER_PROMPT);
 
 	}
 
