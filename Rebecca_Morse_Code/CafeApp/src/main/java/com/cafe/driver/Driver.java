@@ -37,7 +37,7 @@ public class Driver {
 
 		Menu menu = menuService.makeMenu();
 
-		orderTaker.takeOrder(sc, customer, menu);
+		OrderTaker.takeOrder(sc, customer, menu);
 		
 		sc.close();
 

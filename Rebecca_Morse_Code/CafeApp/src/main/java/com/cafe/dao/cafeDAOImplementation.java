@@ -39,11 +39,15 @@ public class cafeDAOImplementation implements cafeDAOInterface{
 		
 		Connection connection = ConnectionLayer.getConnection();
 		
-		
 		try {
-			String sql = " select * from food_item";
-			Statement stmt = connection.createStatement();
-			ResultSet results = stmt.executeQuery(sql);
+			String sql = " SELECT * from food_item";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			
+//			ps.setString(1, __nothing to import here); 
+//			don't know what setString was doing in planetDAO, don't know if i need it.
+			
+			ResultSet results = ps.executeQuery();
 			
 			while(results.next()) {
 				allFoodItems.add(new FoodItem(

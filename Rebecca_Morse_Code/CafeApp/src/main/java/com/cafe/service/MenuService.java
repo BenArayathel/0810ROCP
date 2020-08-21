@@ -1,8 +1,10 @@
 package com.cafe.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.cafe.dao.cafeDAOImplementation;
 import com.cafe.models.FoodItem;
 import com.cafe.models.Menu;
 import com.cafe.util.Communication;
@@ -38,6 +40,23 @@ public class MenuService {
 
 		return menu;
 	}
+	
+//	public static Menu makeMenu() {
+//
+//		cafeDAOImplementation cafeDAO = new cafeDAOImplementation();
+//
+//		List<FoodItem> myFoodItems = cafeDAO.SelectAllFoodItems();
+//
+//		Map<Integer, FoodItem> menuContents = new HashMap<Integer, FoodItem>();
+//
+//		for(FoodItem item: myFoodItems) {
+//			menuContents.put(item.getId(), item);
+//		}
+//		
+//		Menu menu = new Menu(menuContents);
+//
+//		return menu;
+//	}
 	
 	public static void displayMenu(Menu menu) {
 		Communication.communicate(MENU_TITLE);
