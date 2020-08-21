@@ -11,7 +11,7 @@ import java.util.List;
 import com.revature.model.Planet;
 import com.revature.util.ConnectionFactory;
 
-public class PlanetDAOImpl implements PlanetDAO{
+public class PlanetDAOImplementation implements PlanetDAOInterface{
 
 	@Override
 	public void insertPlanet(Planet p) {

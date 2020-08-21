@@ -2,15 +2,14 @@ package com.revature;
 
 import java.util.List;
 
-import com.revature.dao.PlanetDAO;
-import com.revature.dao.PlanetDAOImpl;
+import com.revature.dao.PlanetDAOImplementation;
+import com.revature.dao.PlanetDAOInterface;
 import com.revature.model.Planet;
 
 public class Driver {
-
 	public static void main(String[] args) {
-	
-		PlanetDAO pDao = new PlanetDAOImpl();
+		
+		PlanetDAOInterface pDao = new PlanetDAOImplementation();
 		
 		List<Planet> myListOfPlanet = pDao.selectAllPlanets();
 		

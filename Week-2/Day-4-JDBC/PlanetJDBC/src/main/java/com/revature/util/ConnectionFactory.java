@@ -36,6 +36,19 @@ public class ConnectionFactory {
 	private static String username = "postgres";
 	private static String password = "p";
 	
+	/*
+	 * Setting environment variables 
+	 * 
+	 * https://www.java.com/en/download/help/path.xml
+	 */
+	
+	
+//	private static final String URL = "jdbc:postgresql://localhost/postgres";
+//
+//	private static final String USERNAME = System.getenv("DB_USERNAME");
+//	private static final String PASSWORD = System.getenv("DB_PASSWORD");
+	
+	
 	public static Connection getConnection() {
 		
 		Connection conn = null;
