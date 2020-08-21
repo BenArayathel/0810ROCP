@@ -10,6 +10,7 @@ import com.cafe.models.Menu;
 import com.cafe.models.Order;
 import com.cafe.service.MenuService;
 import com.cafe.service.OrderTaker;
+import com.cafe.util.Communication;
 
 public class Driver {
 
@@ -28,11 +29,11 @@ public class Driver {
 
 		Scanner sc = new Scanner(System.in);
 
-		communicate(WELCOME_MESSAGE);
+		Communication.communicate(WELCOME_MESSAGE);
 
 		Customer customer = establishCustomer(orderTaker.takeInput(sc));
 
-		communicate(GREETING + " " + customer.getName() + "!\n");
+		Communication.communicate(GREETING + " " + customer.getName() + "!\n");
 
 		Menu menu = menuService.makeMenu();
 
@@ -40,10 +41,6 @@ public class Driver {
 		
 		sc.close();
 
-	}
-
-	public static void communicate(String string) {
-		System.out.println(string);
 	}
 
 
