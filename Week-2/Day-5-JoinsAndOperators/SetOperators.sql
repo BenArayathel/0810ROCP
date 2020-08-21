@@ -29,5 +29,10 @@ SELECT nums, chars FROM TA INTERSECT SELECT other_nums, LOWER(other_chars) FROM 
 
 SELECT nums, chars FROM TA EXCEPT SELECT other_nums, LOWER(other_chars) FROM TB ORDER BY nums; --returns values that exist in table a and not in table b 
 
+(select nums, chars from TA except select other_nums, other_chars from TB) union all (select other_nums, other_chars from TB except select nums, chars from TA); --returns values that only exist in seperate tables
+
+
+select name, genre_id as id from genre union select name, category_id from category c2 ;
+
 
 select name from genre g union select name from category c ; --returns me a list of all the music and movie genres
