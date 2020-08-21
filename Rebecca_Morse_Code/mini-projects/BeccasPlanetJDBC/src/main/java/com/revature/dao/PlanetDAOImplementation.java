@@ -63,7 +63,7 @@ public class PlanetDAOImplementation implements PlanetDAOInterface{
 		
 		List<Planet> planets = new ArrayList<>();
 		
-		Connection conn = ConnectionFactory.getConnection(); //establising a connection
+		Connection conn = ConnectionFactory.getConnection(); //establishing a connection
 		
 		String sql = " SELECT * FROM planets" ; //sql statement 
 		

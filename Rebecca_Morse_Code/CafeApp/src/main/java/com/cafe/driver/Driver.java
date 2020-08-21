@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import com.cafe.models.Customer;
 import com.cafe.models.FoodItem;
-import com.cafe.service.Menu;
-import com.cafe.service.Order;
+import com.cafe.models.Menu;
+import com.cafe.models.Order;
 
 public class Driver {
 
@@ -44,6 +44,13 @@ public class Driver {
 
 		Menu menu = makeMenu();
 
+		takeOrder(sc, customer, menu);
+		
+		sc.close();
+
+	}
+
+	private static void takeOrder(Scanner sc, Customer customer, Menu menu) {
 		presentMenuAndUpdateOrder(sc, customer, menu);
 		
 		boolean stillOrdering = true;
@@ -67,8 +74,6 @@ public class Driver {
 				break;
 			}
 		}
-		sc.close();
-
 	}
 
 	private static void presentMenuAndUpdateOrder(Scanner sc, Customer customer, Menu menu) {
@@ -86,8 +91,6 @@ public class Driver {
 				communicate(ENTER_VALID_OPTION);
 				break;
 		}
-
-
 
 		displayOrder(customer.getOrder());
 
@@ -129,11 +132,6 @@ public class Driver {
 		orderMap.put(item, quantity);
 	}
 
-	private static void presentMenu() {
-		communicate(MENU_TITLE);
-		displayMenu(makeMenu());
-		communicate(SELECT_PROMPT);
-	}
 
 	public static void communicate(String string) {
 		System.out.println(string);
@@ -154,6 +152,12 @@ public class Driver {
 		Order order = new Order(currentOrderNumber, newOrderMap);
 		currentOrderNumber++;
 		return order;
+	}
+	
+	private static void presentMenu() {
+		communicate(MENU_TITLE);
+		displayMenu(makeMenu());
+		communicate(SELECT_PROMPT);
 	}
 
 	public static Menu makeMenu() {

@@ -1,9 +1,7 @@
-package com.cafe.service;
+package com.cafe.models;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.cafe.models.*;
 
 public class Order {
 	private int orderID;

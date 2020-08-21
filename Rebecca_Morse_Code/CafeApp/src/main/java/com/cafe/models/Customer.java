@@ -1,7 +1,5 @@
 package com.cafe.models;
 
-import com.cafe.service.Order;
-
 public class Customer {
 	public String name;
 	public Order order;

@@ -1,9 +1,7 @@
-package com.cafe.service;
+package com.cafe.models;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.cafe.models.FoodItem;
 
 public class Menu {
 	private Map<Integer, FoodItem> menu = new HashMap<Integer, FoodItem>();
