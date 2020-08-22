@@ -5,7 +5,7 @@ import java.util.List;
 import com.cafe.models.FoodItem;
 import com.cafe.models.Order;
 
-public interface cafeDAOInterface {
+public interface CafeDAOInterface {
 	//FOOD 
 	//create
 	public void insertFoodItem(FoodItem item);
