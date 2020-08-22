@@ -31,8 +31,8 @@ public class OrderTaker {
 		return input;
 	}
 
-	public static void takeOrder(Scanner sc, Customer customer, Menu menu) {
-		askForNextOrderItem(sc, customer, menu);
+	public static void takeOrder(Scanner sc, Order order, Menu menu) {
+		askForNextOrderItem(sc, order, menu);
 
 		boolean stillOrdering = true;
 
@@ -41,15 +41,15 @@ public class OrderTaker {
 			switch (selection.toUpperCase()) {
 			case "A":
 				Communication.communicate(ADD_ITEMS_PROMPT);
-				askForNextOrderItem(sc, customer, menu);
+				askForNextOrderItem(sc, order, menu);
 				break;
 			case "R":
 				Communication.communicate(REMOVE_ITEMS_PROMPT);
-				askForNextOrderItem(sc, customer, menu);
+				askForNextOrderItem(sc, order, menu);
 				break;
 			case "C":
 				stillOrdering = false;
-				checkout(customer);
+				checkout(order);
 				break;
 			default:
 				Communication.communicate(ENTER_VALID_OPTION);
@@ -58,7 +58,7 @@ public class OrderTaker {
 		}
 	}
 
-	private static void askForNextOrderItem(Scanner sc, Customer customer, Menu menu) {
+	private static void askForNextOrderItem(Scanner sc, Order order, Menu menu) {
 		menuService.displayMenu(menu);
 
 		int itemKey = Integer.parseInt(takeInput(sc));
@@ -73,22 +73,23 @@ public class OrderTaker {
 			FoodItem item = menu.getMenu().get(itemKey);
 			Communication.communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
 			int quantity = Integer.parseInt(takeInput(sc));
-			updateItemQtyOnOrder(customer.getOrder(), item, quantity);
+			updateItemQtyOnOrder(order, item, quantity);
 			break;
 		default:
 			Communication.communicate(ENTER_VALID_OPTION);
 			break;
 		}
 
-		displayOrder(customer.getOrder());
+		displayOrder(order);
 
 		promptforNextStep();
 	}
 
-	private static void checkout(Customer customer) {
-		Order order = customer.getOrder();
+	private static void checkout(Order order) {
 		displayOrder(order);
-		Communication.communicate(THANK_YOU + customer.getName() + COME_AGAIN);
+//		Communication.communicate(THANK_YOU + order.getCustomer().getName() + COME_AGAIN);
+		Communication.communicate(THANK_YOU + COME_AGAIN);
+
 	}
 
 	private static void updateItemQtyOnOrder(Order order, FoodItem item, int quantity) {
@@ -121,13 +122,14 @@ public class OrderTaker {
 		return total;
 	}
 
-	public static Order startOrder(String customerName) {
+	public static Order startOrder(Customer customer) {
+		
 		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
 		
-		int orderNumber = cafeDAO.insertOrder(customerName);
-		Map newOrderMap = new HashMap<FoodItem, Integer>();
+		HashMap<FoodItem, Integer> newOrderMap = new HashMap<FoodItem, Integer>();
 		
-		Order order = new Order(orderNumber, newOrderMap, customerName);
+		int orderNumber = cafeDAO.insertOrder(customer.getName());
+		Order order = new Order(orderNumber, newOrderMap, customer.getName());
 		return order;
 
 	}

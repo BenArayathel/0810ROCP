@@ -31,15 +31,17 @@ public class Driver {
 
 		Communication.communicate(WELCOME_MESSAGE);
 		
-		Order newOrder = OrderTaker.startOrder(OrderTaker.takeInput(sc));
+		Customer customer = new Customer(OrderTaker.takeInput(sc));
+		
+		Order newOrder = OrderTaker.startOrder(customer);
 		
 //		Customer customer = establishCustomer(orderTaker.takeInput(sc));
 
-		Communication.communicate(GREETING + " " + newOrder.getCustomer().getName() + "!\n");
+		Communication.communicate(GREETING + " " + customer.getName() + "!\n");
 
 		Menu menu = menuService.makeMenu();
 
-		OrderTaker.takeOrder(sc, newOrder.getCustomer(), menu);
+		OrderTaker.takeOrder(sc, newOrder, menu);
 		
 		sc.close();
 
