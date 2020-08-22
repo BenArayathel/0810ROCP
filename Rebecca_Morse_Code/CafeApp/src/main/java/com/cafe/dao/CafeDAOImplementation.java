@@ -80,24 +80,52 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 		try {
 //			String sql = "insert into cafe_order(customer_name) values " + "(?)";
 
-			String sql = "insert into cafe_order(customer_name) values " + "(?)" + " returning order_id";
+			String sql = "insert into cafe_order(order_id, customer_name) values (default, " + "?)"; 
+			//+ " returning order_id";
 			PreparedStatement preparedInsertStatement = connection.prepareStatement(sql);
 			preparedInsertStatement.setString(1, customerName);
-			orderNumber = preparedInsertStatement.RETURN_GENERATED_KEYS;
 
 			preparedInsertStatement.execute();
+			
+			ResultSet rs = preparedInsertStatement.getGeneratedKeys();
+			
+			if (rs != null & rs.next()) {
+				System.out.println(rs.toString());
+//				orderNumber = rs.getInt(1);
+			}
 
 		} catch (SQLException e) {
 
 			Communication.communicate("Can't Insert Customer");
 			e.printStackTrace();
 		}
+		System.out.println("order "+ orderNumber);
 		return orderNumber;
+		//order number not returning the key yet
 	}
 
 	@Override
-	public void getOrderByCustomerName(String customerName) {
+	public void getOrderIdByCustomerName(String customerName) {
 		// TODO Auto-generated method stub
+		Connection conn = ConnectionLayer.getConnection();
+		
+		String sql = "select order_id from cafe_order co where customer_name = " + "(?)";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, customerName);
+			ResultSet rs = ps.executeQuery();
+			
+			
+			//the problem is multiple customers could have same name.  
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
 	}
 

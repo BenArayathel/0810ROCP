@@ -1,0 +1,18 @@
+
+pulls food from database to create order.  
+creates order as a map, (does not persist it to the database)
+rather than adding / subtracting items, updates total items ordered.
+no login 
+
+to do: 
+	update price formats in order summary
+	persist orders to database
+	insert order currently returns incorrect order number, not the key.  
+	
+	
+	create report of all orders
+	make login / employee user to pull report
+
+would be nice: 
+	format menu as columns for readability
+

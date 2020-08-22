@@ -39,7 +39,7 @@ public class Driver {
 
 		Communication.communicate(GREETING + " " + customer.getName() + "!\n");
 
-		Menu menu = menuService.makeMenu();
+		Menu menu = MenuService.makeMenu();
 
 		OrderTaker.takeOrder(sc, newOrder, menu);
 		
