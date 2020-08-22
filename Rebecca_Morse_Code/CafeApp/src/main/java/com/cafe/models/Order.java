@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Order {
 	private int orderID;
-	private String customerName;
+	private Customer customer;
 	
 	private Map<FoodItem, Integer> orderContents = new HashMap<FoodItem, Integer>();
 
@@ -31,13 +31,15 @@ public class Order {
 		this.orderContents = orderContents;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
+
+	
 
 	
 }

@@ -23,7 +23,7 @@ public interface CafeDAOInterface {
 	
 	//ORDERS
 	//create
-	public void insertOrder(String customerName);
+	public int insertOrder(String customerName);
 	
 	//read
 	public void getOrderByCustomerName(String customerName);

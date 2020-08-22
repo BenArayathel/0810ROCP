@@ -24,7 +24,6 @@ public class OrderTaker {
 	public static final String ORDER_TOTAL_PREFIX = "Total for order:";
 	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(A) To Add Items \n(R) To Remove Items \n(C) To Check out.";
 
-	
 	private static MenuService menuService = new MenuService();
 
 	public static String takeInput(Scanner sc) {
@@ -86,7 +85,6 @@ public class OrderTaker {
 		promptforNextStep();
 	}
 
-
 	private static void checkout(Customer customer) {
 		Order order = customer.getOrder();
 		displayOrder(order);
@@ -102,12 +100,13 @@ public class OrderTaker {
 		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			Communication.communicate(
-					entry.getValue() + " " + entry.getKey().getName() + "	$" + entry.getKey().getCost() + " (each)");
+				entry.getValue() + " " + entry.getKey().getName() + "	$" + 
+				entry.getKey().getCost() + " (each)");
 		}
 		float total = getOrderTotal(order);
 		Communication.communicate(ORDER_TOTAL_PREFIX + "$" + total);
 	}
-	
+
 	private static void promptforNextStep() {
 		Communication.communicate(CONTINUE_ORDER_PROMPT);
 
@@ -115,25 +114,22 @@ public class OrderTaker {
 
 	private static float getOrderTotal(Order order) {
 		float total = 0;
-		for (Map.Entry<FoodItem,Integer> entry: order.getOrderContents().entrySet()) {
+		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			float itemTotal = entry.getKey().getCost() * entry.getValue();
 			total = total + itemTotal;
 		}
 		return total;
 	}
 
-	public static void startOrder(String customerName) {
+	public static Order startOrder(String customerName) {
 		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
-		cafeDAO.insertOrder(customerName);
 		
+		int orderNumber = cafeDAO.insertOrder(customerName);
 		Map newOrderMap = new HashMap<FoodItem, Integer>();
-//		Order order = new Order(currentOrderNumber, newOrderMap, customerName);
 		
-		
-		
-		
-		
-		
+		Order order = new Order(orderNumber, newOrderMap, customerName);
+		return order;
+
 	}
-	
+
 }

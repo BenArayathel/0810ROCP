@@ -20,7 +20,7 @@ public class Driver {
 //	public static final String FINALIZE_ORDER_PROMPT = "Enter (U) To Update or change your order \nEnter (P) To Pay and complete your order.";
 	
 
-	private static String action;
+//	private static String action;
 	static int currentOrderNumber = 1;
 	private static MenuService menuService = new MenuService();
 	private static OrderTaker orderTaker = new OrderTaker();
@@ -30,24 +30,26 @@ public class Driver {
 		Scanner sc = new Scanner(System.in);
 
 		Communication.communicate(WELCOME_MESSAGE);
+		
+		Order newOrder = OrderTaker.startOrder(OrderTaker.takeInput(sc));
+		
+//		Customer customer = establishCustomer(orderTaker.takeInput(sc));
 
-		Customer customer = establishCustomer(orderTaker.takeInput(sc));
-
-		Communication.communicate(GREETING + " " + customer.getName() + "!\n");
+		Communication.communicate(GREETING + " " + newOrder.getCustomer().getName() + "!\n");
 
 		Menu menu = menuService.makeMenu();
 
-		OrderTaker.takeOrder(sc, customer, menu);
+		OrderTaker.takeOrder(sc, newOrder.getCustomer(), menu);
 		
 		sc.close();
 
 	}
 
 
-	private static Customer establishCustomer(String takeInput) {
-		Customer customer = new Customer(takeInput, orderTaker.startOrder(currentOrderNumber));
-		return customer;
-	}
+//	private static Customer establishCustomer(String takeInput) {
+//		Customer customer = new Customer(takeInput, orderTaker.startOrder(takeInput).getOrderId());
+//		return customer;
+//	}
 	
 
 
