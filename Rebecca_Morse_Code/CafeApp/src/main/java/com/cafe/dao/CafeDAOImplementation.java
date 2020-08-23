@@ -40,7 +40,6 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 		return allFoodItems;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public int insertOrder(String customerName) {
 

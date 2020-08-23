@@ -15,12 +15,6 @@ public class Order {
 		this.orderContents = orderContents;
 	}
 
-	public Order(int orderID, Map<FoodItem, Integer> orderContents, String customerName) {
-		super();
-		this.orderID = orderID;
-		this.orderContents = orderContents;
-	}
-
 	public int getOrderID() {
 		return orderID;
 	}

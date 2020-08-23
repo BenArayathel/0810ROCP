@@ -18,10 +18,11 @@ public class OrderTaker {
 	public static final String QUANTITY_PROMPT_ONE = "How many ";
 	public static final String QUANTITY_PROMPT_TWO = "s would you like?";
 	public static final String THANK_YOU = "Thank you for visiting the Cat Cafe, ";
-	public static final String COME_AGAIN = " Come again soon!";
-	public static final String DISPLAY_ORDER_TITLE = "Here is your order:";
+	public static final String COME_AGAIN = " - Come again soon!";
+	public static final String DISPLAY_ORDER_TITLE = "That will be:";
 	public static final String ORDER_TOTAL_PREFIX = "Total: ";
 	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(O) to order an item or change quantity \n(C) To Check out.";
+	private static final String CLOSE_OUT_ORDER = "Will that be Cash or Charge?  Just kidding! It's on the house today - ";
 
 	
 	private static MenuService menuService = new MenuService();
@@ -40,7 +41,7 @@ public class OrderTaker {
 		HashMap<FoodItem, Integer> newOrderMap = new HashMap<FoodItem, Integer>();
 
 		int orderNumber = cafeDAO.insertOrder(customer);
-		Order order = new Order(orderNumber, newOrderMap, customer);
+		Order order = new Order(orderNumber, customer, newOrderMap);
 		return order;
 
 	}
@@ -104,9 +105,13 @@ public class OrderTaker {
 		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			String cost = String.format("%.2f", entry.getKey().getCost());
-		
+			String plural = "s";
+			if(entry.getValue() == 1) {
+				plural = "";
+			}
+			
 			Communication.communicate(
-					entry.getValue() + " " + entry.getKey().getName() + "	$" + cost + " (each)");
+					entry.getValue() + " " + entry.getKey().getName() + plural + "	$" + cost + " (each)");
 		}
 		float total = getOrderTotal(order);
 		String displayTotal = String.format("%.2f", total);
@@ -128,7 +133,9 @@ public class OrderTaker {
 
 	private static void checkout(Order order) {
 		displayOrder(order);
-		Communication.communicate(THANK_YOU + COME_AGAIN);
+		System.out.println();
+		Communication.communicate(CLOSE_OUT_ORDER);
+		Communication.communicate(THANK_YOU + order.getCustomer()+ COME_AGAIN);
 
 	}
 
