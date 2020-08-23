@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.cafe.models.Customer;
 import com.cafe.models.FoodItem;
 import com.cafe.models.Menu;
 import com.cafe.models.Order;
@@ -31,13 +30,12 @@ public class Driver {
 
 		Communication.communicate(WELCOME_MESSAGE);
 		
-		Customer customer = new Customer(OrderTaker.takeInput(sc));
+//		Customer customer = new Customer(OrderTaker.takeInput(sc));
+		String customer = OrderTaker.takeInput(sc);
 		
 		Order newOrder = OrderTaker.startOrder(customer);
 		
-//		Customer customer = establishCustomer(orderTaker.takeInput(sc));
-
-		Communication.communicate(GREETING + " " + customer.getName() + "!\n");
+		Communication.communicate(GREETING + " " + customer + "!\n");
 
 		Menu menu = MenuService.makeMenu();
 
@@ -46,15 +44,4 @@ public class Driver {
 		sc.close();
 
 	}
-
-
-//	private static Customer establishCustomer(String takeInput) {
-//		Customer customer = new Customer(takeInput, orderTaker.startOrder(takeInput).getOrderId());
-//		return customer;
-//	}
-	
-
-
-
-
 }

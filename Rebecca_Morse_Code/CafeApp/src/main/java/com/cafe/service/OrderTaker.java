@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.cafe.dao.CafeDAOImplementation;
-import com.cafe.models.Customer;
 import com.cafe.models.FoodItem;
 import com.cafe.models.Menu;
 import com.cafe.models.Order;
@@ -122,14 +121,14 @@ public class OrderTaker {
 		return total;
 	}
 
-	public static Order startOrder(Customer customer) {
+	public static Order startOrder(String customer) {
 		
 		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
 		
 		HashMap<FoodItem, Integer> newOrderMap = new HashMap<FoodItem, Integer>();
 		
-		int orderNumber = cafeDAO.insertOrder(customer.getName());
-		Order order = new Order(orderNumber, newOrderMap, customer.getName());
+		int orderNumber = cafeDAO.insertOrder(customer);
+		Order order = new Order(orderNumber, newOrderMap, customer);
 		return order;
 
 	}

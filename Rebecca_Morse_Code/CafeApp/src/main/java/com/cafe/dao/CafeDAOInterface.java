@@ -25,11 +25,7 @@ public interface CafeDAOInterface {
 	//create
 	public int insertOrder(String customerName);
 	
-	//read
-	public void getOrderIdByCustomerName(String customerName);
-	
-//	public void getOrderByOrderId(int id);
-	//i really don't think i'll need this method. 
+	public Order getOrderById(int id);
 	
 	public List<Order> displayAllOrders();
 	

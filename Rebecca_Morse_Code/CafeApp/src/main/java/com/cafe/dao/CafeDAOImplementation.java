@@ -73,25 +73,32 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 	@SuppressWarnings("static-access")
 	@Override
 	public int insertOrder(String customerName) {
-//should this be a string and return the order number? 
+
+		String sql = "insert into cafe_order(order_id, customer_name) values (default, " + "?)";
+
 		int orderNumber = 0;
+
 		Connection connection = ConnectionLayer.getConnection();
 
 		try {
-//			String sql = "insert into cafe_order(customer_name) values " + "(?)";
 
-			String sql = "insert into cafe_order(order_id, customer_name) values (default, " + "?)"; 
-			//+ " returning order_id";
-			PreparedStatement preparedInsertStatement = connection.prepareStatement(sql);
+			PreparedStatement preparedInsertStatement = connection.prepareStatement(sql,
+					Statement.RETURN_GENERATED_KEYS);
+
 			preparedInsertStatement.setString(1, customerName);
 
-			preparedInsertStatement.execute();
-			
-			ResultSet rs = preparedInsertStatement.getGeneratedKeys();
-			
-			if (rs != null & rs.next()) {
-				System.out.println(rs.toString());
-//				orderNumber = rs.getInt(1);
+			int affectedRows = preparedInsertStatement.executeUpdate();
+
+			if (affectedRows > 0) {
+
+				try (ResultSet rs = preparedInsertStatement.getGeneratedKeys()) {
+					if (rs.next()) {
+						orderNumber = rs.getInt(1);
+					}
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 
 		} catch (SQLException e) {
@@ -99,34 +106,7 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 			Communication.communicate("Can't Insert Customer");
 			e.printStackTrace();
 		}
-		System.out.println("order "+ orderNumber);
 		return orderNumber;
-		//order number not returning the key yet
-	}
-
-	@Override
-	public void getOrderIdByCustomerName(String customerName) {
-		// TODO Auto-generated method stub
-		Connection conn = ConnectionLayer.getConnection();
-		
-		String sql = "select order_id from cafe_order co where customer_name = " + "(?)";
-		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, customerName);
-			ResultSet rs = ps.executeQuery();
-			
-			
-			//the problem is multiple customers could have same name.  
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-
 	}
 
 	@Override
@@ -145,6 +125,12 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 	public void removeFoodFromOrder(Order order, FoodItem item, int quantity) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Order getOrderById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

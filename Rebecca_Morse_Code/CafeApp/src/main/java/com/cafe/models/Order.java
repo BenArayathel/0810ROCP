@@ -5,9 +5,15 @@ import java.util.Map;
 
 public class Order {
 	private int orderID;
-	private Customer customer;
+	private String customer;
+	private Map<FoodItem, Integer> orderContents = new HashMap<FoodItem, Integer>();	
 	
-	private Map<FoodItem, Integer> orderContents = new HashMap<FoodItem, Integer>();
+	public Order(int orderID, String customer, Map<FoodItem, Integer> orderContents) {
+		super();
+		this.orderID = orderID;
+		this.customer = customer;
+		this.orderContents = orderContents;
+	}
 
 	public Order(int orderID, Map<FoodItem, Integer> orderContents, String customerName) {
 		super();
@@ -31,11 +37,11 @@ public class Order {
 		this.orderContents = orderContents;
 	}
 
-	public Customer getCustomer() {
+	public String getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
 
