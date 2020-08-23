@@ -13,16 +13,15 @@ import com.cafe.util.*;
 
 public class OrderTaker {
 
-	public static final String ADD_ITEMS_PROMPT = "What would you like to add to your order?";
-	public static final String REMOVE_ITEMS_PROMPT = "What would you like to remove from your order?";
+	public static final String ADD_ITEMS_PROMPT = "What can I get for you?";
 	public static final String ENTER_VALID_OPTION = "Please enter a valid option";
 	public static final String QUANTITY_PROMPT_ONE = "How many ";
 	public static final String QUANTITY_PROMPT_TWO = "s would you like?";
 	public static final String THANK_YOU = "Thank you for visiting the Cat Cafe, ";
-	public static final String COME_AGAIN = ", Come again soon!";
+	public static final String COME_AGAIN = " Come again soon!";
 	public static final String DISPLAY_ORDER_TITLE = "Here is your order:";
-	public static final String ORDER_TOTAL_PREFIX = "Total for order:";
-	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(A) To Add Items \n(R) To Remove Items \n(C) To Check out.";
+	public static final String ORDER_TOTAL_PREFIX = "Total: ";
+	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(O) to order an item or change quantity \n(C) To Check out.";
 
 	
 	private static MenuService menuService = new MenuService();
@@ -54,12 +53,8 @@ public class OrderTaker {
 		while (stillOrdering) {
 			String selection = takeInput(sc);
 			switch (selection.toUpperCase()) {
-			case "A":
+			case "O":
 				Communication.communicate(ADD_ITEMS_PROMPT);
-				askForNextOrderItem(sc, order, menu);
-				break;
-			case "R":
-				Communication.communicate(REMOVE_ITEMS_PROMPT);
 				askForNextOrderItem(sc, order, menu);
 				break;
 			case "C":
@@ -109,6 +104,7 @@ public class OrderTaker {
 		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			String cost = String.format("%.2f", entry.getKey().getCost());
+		
 			Communication.communicate(
 					entry.getValue() + " " + entry.getKey().getName() + "	$" + cost + " (each)");
 		}
@@ -132,7 +128,7 @@ public class OrderTaker {
 
 	private static void checkout(Order order) {
 		displayOrder(order);
-		Communication.communicate(THANK_YOU + order.getCustomer() + COME_AGAIN);
+		Communication.communicate(THANK_YOU + COME_AGAIN);
 
 	}
 

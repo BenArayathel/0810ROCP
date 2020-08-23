@@ -8,18 +8,18 @@ import com.cafe.models.Order;
 public interface CafeDAOInterface {
 	//FOOD 
 	//create
-	public void insertFoodItem(FoodItem item);
+//	public void insertFoodItem(FoodItem item);
 
 	//read
-	public FoodItem selectFoodItemByName(String foodName);
-	public FoodItem selectFoodItemById(int id);
+//	public FoodItem selectFoodItemByName(String foodName);
+//	public FoodItem selectFoodItemById(int id);
 	public List<FoodItem> SelectAllFoodItems();
 	
-	//update
-	public void updateFoodItem(FoodItem item);
-	
-	//delete
-	public void deleteFoodItem(FoodItem item);
+//	//update
+//	public void updateFoodItem(FoodItem item);
+//	
+//	//delete
+//	public void deleteFoodItem(FoodItem item);
 	
 	//ORDERS
 	//create
@@ -30,10 +30,10 @@ public interface CafeDAOInterface {
 	public List<Order> displayAllOrders();
 	
 	//update
-	public void addFoodToOrder(Order order, FoodItem item, int quantity);
+	public void enterOrderIntoRegister(Order order);
 	
 	//delete
-	public void removeFoodFromOrder(Order order, FoodItem item, int quantity);
+	public void deleteOrder(Order order);
 
 	
 

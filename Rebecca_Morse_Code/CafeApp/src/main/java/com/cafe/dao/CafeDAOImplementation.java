@@ -16,24 +16,6 @@ import com.cafe.util.ConnectionLayer;
 public class CafeDAOImplementation implements CafeDAOInterface {
 
 	@Override
-	public void insertFoodItem(FoodItem item) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public FoodItem selectFoodItemByName(String foodName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public FoodItem selectFoodItemById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<FoodItem> SelectAllFoodItems() {
 
 		List<FoodItem> allFoodItems = new ArrayList<>();
@@ -56,18 +38,6 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 			e.printStackTrace();
 		}
 		return allFoodItems;
-	}
-
-	@Override
-	public void updateFoodItem(FoodItem item) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteFoodItem(FoodItem item) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@SuppressWarnings("static-access")
@@ -110,28 +80,27 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 	}
 
 	@Override
+	public Order getOrderById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<Order> displayAllOrders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void addFoodToOrder(Order order, FoodItem item, int quantity) {
-		// TODO Auto-generated method stub
-		String sql = "insert into cafe_order_food_items (order_id, item_id) values('?','?');";
+@Override
+public void enterOrderIntoRegister(Order order) {
+	// TODO Auto-generated method stub
+	
+}
 
-	}
-
-	@Override
-	public void removeFoodFromOrder(Order order, FoodItem item, int quantity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Order getOrderById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+@Override
+public void deleteOrder(Order order) {
+	// TODO Auto-generated method stub
+	
+}
 
 }

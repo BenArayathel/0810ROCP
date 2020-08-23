@@ -13,16 +13,16 @@ import com.cafe.util.Communication;
 
 public class Driver {
 
-	public static final String WELCOME_MESSAGE = "Welcome to Cat Cafe! To place an order, Enter your Name:";
+	public static final String WELCOME_MESSAGE = "Welcome to Cat Cafe! What's your Name?";
 	public static final String GREETING = "Hello, ";
-	public static final String ORDER_PROMPT = "What would you like to order?";
+	public static final String ORDER_PROMPT = "What would you like to order?\n";
 //	public static final String FINALIZE_ORDER_PROMPT = "Enter (U) To Update or change your order \nEnter (P) To Pay and complete your order.";
 	
 
 //	private static String action;
 	static int currentOrderNumber = 1;
-	private static MenuService menuService = new MenuService();
-	private static OrderTaker orderTaker = new OrderTaker();
+//	private static MenuService menuService = new MenuService();
+//	private static OrderTaker orderTaker = new OrderTaker();
 
 	public static void main(String[] args) {
 
@@ -34,7 +34,7 @@ public class Driver {
 		
 		Order newOrder = OrderTaker.startOrder(customer);
 		
-		Communication.communicate(GREETING + " " + customer + "!\n");
+		Communication.communicate(GREETING + " " + customer + ", " + ORDER_PROMPT);
 
 		Menu menu = MenuService.makeMenu();
 
