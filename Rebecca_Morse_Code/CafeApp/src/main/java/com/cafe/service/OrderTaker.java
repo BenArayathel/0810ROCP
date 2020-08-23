@@ -132,6 +132,9 @@ public class OrderTaker {
 	}
 
 	private static void checkout(Order order) {
+		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
+		cafeDAO.enterOrderIntoRegister(order);
+		
 		displayOrder(order);
 		System.out.println();
 		Communication.communicate(CLOSE_OUT_ORDER);

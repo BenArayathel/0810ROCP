@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.cafe.models.FoodItem;
@@ -90,16 +91,44 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 		return null;
 	}
 
-@Override
-public void enterOrderIntoRegister(Order order) {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public void enterOrderIntoRegister(Order order) {
+				
+		Connection conn = ConnectionLayer.getConnection();
+		
+		List<FoodItem> foodsOrdered = new ArrayList<>();
+		
+		Iterator<FoodItem> i = order.getOrderContents().keySet().iterator();
+		
+		while (i.hasNext()) {
+			FoodItem item = i.next();
+			foodsOrdered.add(item);
+		}
 
-@Override
-public void deleteOrder(Order order) {
-	// TODO Auto-generated method stub
-	
-}
+		String sql = "insert into cafe_order_food_items (order_id, item_id, quantity, price)"
+				+ " values(?,?,?,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			for ( FoodItem item : foodsOrdered ) {
+				ps.setInt(1, order.getOrderID());
+				ps.setInt(2, item.getId());
+				ps.setInt(3, order.getOrderContents().get(item));
+				ps.setFloat(4, item.getCost());
+			}
+			ps.execute();
+
+		} catch (SQLException e) {
+			Communication.communicate("Couldn't save order");
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void deleteOrder(Order order) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
