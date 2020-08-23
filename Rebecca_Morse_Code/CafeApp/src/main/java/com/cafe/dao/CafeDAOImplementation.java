@@ -118,6 +118,7 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 	@Override
 	public void addFoodToOrder(Order order, FoodItem item, int quantity) {
 		// TODO Auto-generated method stub
+		String sql = "insert into cafe_order_food_items (order_id, item_id) values('?','?');";
 
 	}
 

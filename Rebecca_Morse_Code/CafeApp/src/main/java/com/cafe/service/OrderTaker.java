@@ -1,5 +1,6 @@
 package com.cafe.service;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -23,11 +24,26 @@ public class OrderTaker {
 	public static final String ORDER_TOTAL_PREFIX = "Total for order:";
 	public static final String CONTINUE_ORDER_PROMPT = "Enter \n(A) To Add Items \n(R) To Remove Items \n(C) To Check out.";
 
+	
 	private static MenuService menuService = new MenuService();
+	DecimalFormat df = new DecimalFormat("#.##");
+
 
 	public static String takeInput(Scanner sc) {
 		String input = sc.nextLine();
 		return input;
+	}
+
+	public static Order startOrder(String customer) {
+
+		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
+
+		HashMap<FoodItem, Integer> newOrderMap = new HashMap<FoodItem, Integer>();
+
+		int orderNumber = cafeDAO.insertOrder(customer);
+		Order order = new Order(orderNumber, newOrderMap, customer);
+		return order;
+
 	}
 
 	public static void takeOrder(Scanner sc, Order order, Menu menu) {
@@ -58,7 +74,7 @@ public class OrderTaker {
 	}
 
 	private static void askForNextOrderItem(Scanner sc, Order order, Menu menu) {
-		menuService.displayMenu(menu);
+		MenuService.displayMenu(menu);
 
 		int itemKey = Integer.parseInt(takeInput(sc));
 		switch (itemKey) {
@@ -84,13 +100,6 @@ public class OrderTaker {
 		promptforNextStep();
 	}
 
-	private static void checkout(Order order) {
-		displayOrder(order);
-//		Communication.communicate(THANK_YOU + order.getCustomer().getName() + COME_AGAIN);
-		Communication.communicate(THANK_YOU + COME_AGAIN);
-
-	}
-
 	private static void updateItemQtyOnOrder(Order order, FoodItem item, int quantity) {
 		Map<FoodItem, Integer> orderMap = order.getOrderContents();
 		orderMap.put(item, quantity);
@@ -99,17 +108,17 @@ public class OrderTaker {
 	private static void displayOrder(Order order) {
 		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
+			String cost = String.format("%.2f", entry.getKey().getCost());
 			Communication.communicate(
-				entry.getValue() + " " + entry.getKey().getName() + "	$" + 
-				entry.getKey().getCost() + " (each)");
+					entry.getValue() + " " + entry.getKey().getName() + "	$" + cost + " (each)");
 		}
 		float total = getOrderTotal(order);
-		Communication.communicate(ORDER_TOTAL_PREFIX + "$" + total);
+		String displayTotal = String.format("%.2f", total);
+		Communication.communicate(ORDER_TOTAL_PREFIX + "$" + displayTotal);
 	}
 
 	private static void promptforNextStep() {
 		Communication.communicate(CONTINUE_ORDER_PROMPT);
-
 	}
 
 	private static float getOrderTotal(Order order) {
@@ -121,15 +130,9 @@ public class OrderTaker {
 		return total;
 	}
 
-	public static Order startOrder(String customer) {
-		
-		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
-		
-		HashMap<FoodItem, Integer> newOrderMap = new HashMap<FoodItem, Integer>();
-		
-		int orderNumber = cafeDAO.insertOrder(customer);
-		Order order = new Order(orderNumber, newOrderMap, customer);
-		return order;
+	private static void checkout(Order order) {
+		displayOrder(order);
+		Communication.communicate(THANK_YOU + order.getCustomer() + COME_AGAIN);
 
 	}
 

@@ -30,7 +30,6 @@ public class Driver {
 
 		Communication.communicate(WELCOME_MESSAGE);
 		
-//		Customer customer = new Customer(OrderTaker.takeInput(sc));
 		String customer = OrderTaker.takeInput(sc);
 		
 		Order newOrder = OrderTaker.startOrder(customer);

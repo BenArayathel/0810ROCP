@@ -5,7 +5,6 @@ rather than adding / subtracting items, updates total items ordered.
 no login 
 
 to do: 
-	update price formats in order summary
 	persist orders to database
 	catch exception errors when you enter incorrect input.
 	
@@ -22,3 +21,4 @@ Done:
 	commented out customer and login files:  
 	customer has only property 'name' - seems like over-complicating it
 	to pass an object instead of a string. 
+	update price formats in order summary
