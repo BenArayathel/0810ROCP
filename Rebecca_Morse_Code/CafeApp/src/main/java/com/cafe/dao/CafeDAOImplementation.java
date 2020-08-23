@@ -88,6 +88,8 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 	@Override
 	public List<Order> displayAllOrders() {
 		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 
@@ -104,7 +106,7 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 			FoodItem item = i.next();
 			foodsOrdered.add(item);
 		}
-
+		
 		String sql = "insert into cafe_order_food_items (order_id, item_id, quantity, price)"
 				+ " values(?,?,?,?);";
 		try {
@@ -115,8 +117,8 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 				ps.setInt(2, item.getId());
 				ps.setInt(3, order.getOrderContents().get(item));
 				ps.setFloat(4, item.getCost());
+				ps.execute();
 			}
-			ps.execute();
 
 		} catch (SQLException e) {
 			Communication.communicate("Couldn't save order");
