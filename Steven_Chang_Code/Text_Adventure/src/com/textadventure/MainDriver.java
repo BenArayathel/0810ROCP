@@ -3,6 +3,10 @@ package com.textadventure;
 import java.util.List;
 import java.util.Scanner;
 
+import com.textadventure.dao.TextAdventureDAO;
+import com.textadventure.models.Player;
+import com.textadventure.models.Room;
+
 public class MainDriver {
 	
 //	public static void setup() {
@@ -11,26 +15,21 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 		//setup
-		Room entryway = new Entryway();
-		Room livingroom = new LivingRoom();
-		Room kitchen = new Kitchen();
-		Room basement = new Basement();
-		Room backyard = new Backyard();
-		
-		entryway.setForward(livingroom);
-		livingroom.setForward(backyard);
-		livingroom.setLeft(basement);
-		livingroom.setRight(kitchen);
-		livingroom.setBack(entryway);
-		backyard.setBack(livingroom);
-		kitchen.setBack(livingroom);
-		basement.setBack(livingroom);
-		
-		Room currentRoom = entryway;
-		
+		TextAdventureDAO taDAO = new TextAdventureDAO();
+//		List<Room> rooms = taDAO.selectAllRooms();
 		Scanner sc = new Scanner(System.in);
+		System.out.println("name?");
+		String name = sc.nextLine();
+		if (taDAO.selectPlayerByName(name) == null) {
+			System.out.println("Player not found. Creating new player.");
+			taDAO.insertPlayer(name);
+		}
+		Player currentPlayer = taDAO.selectPlayerByName(name);
+		
 		boolean run = true;
 		while(run) {
+			System.out.println(currentPlayer.getCurrentRoom().getName());
+			Room currentRoom = currentPlayer.getCurrentRoom();
 			currentRoom.currentRoom();
 			String command = getCommand(sc, currentRoom);		//Get Input
 			
