@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Formatter;
 
 import com.cafe.dao.CafeDAOImplementation;
 import com.cafe.models.FoodItem;
@@ -19,17 +20,13 @@ public class MenuService {
 	public static Menu makeMenu() {
 
 		CafeDAOImplementation cafeDAO = new CafeDAOImplementation();
-
 		List<FoodItem> myFoodItems = cafeDAO.SelectAllFoodItems();
-
 		Map<Integer, FoodItem> menuContents = new HashMap<Integer, FoodItem>();
-
 		for(FoodItem item: myFoodItems) {
 			menuContents.put(item.getId(), item);
 		}
 
 		Menu menu = new Menu(menuContents);
-
 		return menu;
 	}
 	
@@ -38,10 +35,16 @@ public class MenuService {
 
 		for (Map.Entry<Integer, FoodItem> entry : menu.getMenu().entrySet()) {
 			
+			String selector = "(" + entry.getKey()+ ") ";
+			String dishName = entry.getValue().getName();
+			String description = entry.getValue().getDescription();
 			String price = String.format("%.2f", entry.getValue().getCost());			
 			
-			System.out.println("(" + entry.getKey() + ") " + entry.getValue().getName() + " - "
-					+ entry.getValue().getDescription() + "	$" + price);
+			System.out.printf("%-2s",selector);
+			System.out.printf("%-30s",dishName);
+			System.out.printf("%-80s",description);
+			System.out.printf("$%6s",price);
+			System.out.println();
 		}
 		Communication.communicate(SELECT_PROMPT);
 	}

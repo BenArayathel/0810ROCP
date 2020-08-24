@@ -5,9 +5,7 @@ rather than adding / subtracting items, updates total items ordered.
 no login 
 
 to do: 
-	persist orders to database
-	catch exception errors when you enter incorrect input.
-	
+	catch exception errors when you enter incorrect input for quantity
 	
 	create report of all orders
 	make login / employee user to pull report
@@ -17,6 +15,7 @@ would be nice:
 
 
 Done: 
+	persist orders to database
 	insert order currently returns key.   
 	commented out customer and login files:  
 	customer has only property 'name' - seems like over-complicating it

@@ -84,16 +84,20 @@ public class OrderTaker {
 			FoodItem item = menu.getMenu().get(itemKey);
 			Communication.communicate(QUANTITY_PROMPT_ONE + item.getName() + QUANTITY_PROMPT_TWO);
 			int quantity = Integer.parseInt(takeInput(sc));
+			//need to pull this out into own method - causes exception if you don't enter an integer. 
 			updateItemQtyOnOrder(order, item, quantity);
+		
 			break;
 		default:
 			Communication.communicate(ENTER_VALID_OPTION);
 			break;
 		}
-
+		
+		Communication.communicate(DISPLAY_ORDER_TITLE);
+		
 		displayOrder(order);
 
-		promptforNextStep();
+		Communication.communicate(CONTINUE_ORDER_PROMPT);
 	}
 
 	private static void updateItemQtyOnOrder(Order order, FoodItem item, int quantity) {
@@ -102,24 +106,25 @@ public class OrderTaker {
 	}
 
 	private static void displayOrder(Order order) {
-		Communication.communicate(DISPLAY_ORDER_TITLE);
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
-			String cost = String.format("%.2f", entry.getKey().getCost());
+			int quantity = entry.getValue();
+			String item = entry.getKey().getName();
 			String plural = "s";
+			String cost = String.format("$ %.2f (each)", entry.getKey().getCost());
 			if(entry.getValue() == 1) {
 				plural = "";
 			}
 			
-			Communication.communicate(
-					entry.getValue() + " " + entry.getKey().getName() + plural + "	$" + cost + " (each)");
+			System.out.printf("%-4d",quantity);
+			System.out.printf("%-30s",item + plural);
+			System.out.print(cost);
+			System.out.println();
+			System.out.println();
+
 		}
 		float total = getOrderTotal(order);
-		String displayTotal = String.format("%.2f", total);
-		Communication.communicate(ORDER_TOTAL_PREFIX + "$" + displayTotal);
-	}
-
-	private static void promptforNextStep() {
-		Communication.communicate(CONTINUE_ORDER_PROMPT);
+		String displayTotal = String.format("$ %.2f", total);
+		Communication.communicate(ORDER_TOTAL_PREFIX + displayTotal);
 	}
 
 	private static float getOrderTotal(Order order) {

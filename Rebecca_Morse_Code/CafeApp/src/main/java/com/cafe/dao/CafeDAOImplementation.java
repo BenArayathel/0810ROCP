@@ -87,8 +87,23 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 
 	@Override
 	public List<Order> displayAllOrders() {
-		// TODO Auto-generated method stub
-		
+//
+//		Connection conn = ConnectionLayer.getConnection();
+//		
+//		String sql = "select co.order_id \n" + 
+//				"	, co.customer_name\n" + 
+//				
+//				"	, fi.item_id\n" + 
+//				"	, fi.dish_name\n" + 
+//				
+//				"	, cofi.quantity\n" + 
+//				
+//				"	, cofi.price\n" + 
+//				
+//				"from cafe_order co\n" + 
+//				"inner join cafe_order_food_items cofi on cofi.order_id = co.order_id \n" + 
+//				"inner join food_item fi on fi.item_id = cofi.item_id \n" + 
+//				";";
 		
 		return null;
 	}
