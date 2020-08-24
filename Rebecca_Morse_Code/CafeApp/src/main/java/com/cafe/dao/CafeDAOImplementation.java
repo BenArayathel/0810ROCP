@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.cafe.models.FoodItem;
 import com.cafe.models.Order;
@@ -30,8 +32,12 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 			ResultSet results = ps.executeQuery();
 
 			while (results.next()) {
-				allFoodItems.add(new FoodItem(results.getInt(1), results.getString(2), results.getString(3),
-						results.getString(4), results.getFloat(5)));
+				allFoodItems.add(new FoodItem(
+						results.getInt(1), 
+						results.getString(2), 
+						results.getString(3),
+						results.getString(4), 
+						results.getFloat(5)));
 			}
 
 		} catch (SQLException e) {
@@ -81,29 +87,56 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 
 	@Override
 	public Order getOrderById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Connection conn = ConnectionLayer.getConnection();
+		Map<FoodItem, Integer> orderMap = new HashMap<>();
+		String customerName = new String();
+				
+		String sql = "	co.customer_name, " + 
+				"	fi.item_id, " + 
+				"	fi.dish_name, " + 
+				"	fi.dish_category, " + 
+				"	fi.description, " +
+				"	cofi.price, " + 
+				"	cofi.quantity " + 
+				"from cafe_order co " + 
+				"inner join cafe_order_food_items cofi on cofi.order_id = co.order_id " + 
+				"inner join food_item fi on fi.item_id = cofi.item_id" +
+				"where co.order_id = " +
+				"(?)";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				
+				customerName = rs.getString("co.customer_name");
+				
+				FoodItem orderedFood = new FoodItem(
+						rs.getInt("fi.item_id"), 
+						rs.getString("fi.dish_name"), 
+						rs.getString("fi.dish_category"),
+						rs.getString("fi.description"), 
+						rs.getFloat("cofi.price"));
+					
+				orderMap.put(orderedFood, rs.getInt("cofi.quantity"));	
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Order order = new Order(id, customerName, orderMap);	
+		return order;
 	}
 
 	@Override
 	public List<Order> displayAllOrders() {
-//
-//		Connection conn = ConnectionLayer.getConnection();
-//		
-//		String sql = "select co.order_id \n" + 
-//				"	, co.customer_name\n" + 
-//				
-//				"	, fi.item_id\n" + 
-//				"	, fi.dish_name\n" + 
-//				
-//				"	, cofi.quantity\n" + 
-//				
-//				"	, cofi.price\n" + 
-//				
-//				"from cafe_order co\n" + 
-//				"inner join cafe_order_food_items cofi on cofi.order_id = co.order_id \n" + 
-//				"inner join food_item fi on fi.item_id = cofi.item_id \n" + 
-//				";";
 		
 		return null;
 	}

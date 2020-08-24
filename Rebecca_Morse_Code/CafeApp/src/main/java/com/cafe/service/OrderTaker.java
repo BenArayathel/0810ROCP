@@ -105,7 +105,7 @@ public class OrderTaker {
 		orderMap.put(item, quantity);
 	}
 
-	private static void displayOrder(Order order) {
+	public static void displayOrder(Order order) {
 		for (Map.Entry<FoodItem, Integer> entry : order.getOrderContents().entrySet()) {
 			int quantity = entry.getValue();
 			String item = entry.getKey().getName();
@@ -119,9 +119,8 @@ public class OrderTaker {
 			System.out.printf("%-30s",item + plural);
 			System.out.print(cost);
 			System.out.println();
-			System.out.println();
-
 		}
+		System.out.println();
 		float total = getOrderTotal(order);
 		String displayTotal = String.format("$ %.2f", total);
 		Communication.communicate(ORDER_TOTAL_PREFIX + displayTotal);
