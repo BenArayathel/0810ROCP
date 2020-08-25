@@ -36,6 +36,7 @@ public class TextAdventure {
 //		connect the kitchen
 		kitchen.setBack(livingRoom);
 		
+//		start the game
 		Room currentRoom = entryway;
 		while (currentRoom != null) {
 			currentRoom = currentRoom.enterRoom(sc);

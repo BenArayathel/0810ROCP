@@ -22,7 +22,7 @@ public class Room {
 	
 	public Room(String name, boolean isEntry) {
 		this(name);
-		this.isEntry = true;
+		this.isEntry = isEntry;
 	}
 	
 	public Room enterRoom(Scanner sc) {
@@ -72,6 +72,8 @@ public class Room {
 					return this.left;
 				case "right":
 					return this.right;
+				default:
+					break;
 				}
 			}
 		}
