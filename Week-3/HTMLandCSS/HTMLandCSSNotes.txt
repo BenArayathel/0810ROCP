@@ -1,0 +1,80 @@
+
+What is HTML?
+	HTML (Hyper Text Markup Language) is the standard language which with web documents are displayed on browsers. It's used in conjuction with CSS 
+	(Cascading Style Sheets) and Javascript to create stylised, interactive web pages.   
+	(Also note: HTML5 is the new standard, it is mainly distinguished from previous versions, with it's emphasis on video and audio being integral 
+	aspects of the language. This translates to not needing external plugins like Flash to play a video, using the in-built tag <video>.).
+
+Tags:
+
+<!DOCTYPE html>: Declares this document to be HTML (Hyper Text Markup Language), not exactly a true HTML tag, instead is instructions about what 
+	version of HTML the page is written in. 
+
+<html> Root element of the web document, contains almost all the HTML tags. 
+
+<head> Container for the meta information tags of the document (e.g. <script>, <style>, <link>, <title> etc.)
+
+<meta charset = "UTF-8"> Metadisplay is not displayed on the webpage, but the browser will parse it. 
+
+<title> Specifies the title of the webpage, will be displayed on the tab
+
+<body> As the name suggests, contains all the elements within the body of the webpage. These elements will define what will be displayed on the web page.
+
+<link rel="stylesheet" type="text/css" href =""> links the document with an external resource, used to link external style sheets. 
+
+<div> Defines a section of elements in an HTML document. Used as a container to label a set of elements for easier manipulation with CSS and JavaScript. 
+
+<span> Used to group inline-elements in a document
+
+<br> Creates a line break (Don't use too much)
+
+<h1>...<h6> Defines HTML headings, h1 being the largest and h6 being the smallest.
+
+<table>	Defines an HTML table, consists of the following elements:
+	<tr> Defines a table row
+	<th> Defines a table header
+	<td> Defines a table cell 
+
+<ul> Unordered List 
+<ol> Ordered List
+	<li> List element 
+
+<iframe> Defines an linline frame that us used to embed another document within the HTML document
+
+<form>	Attributes: (action = '' defines where the form-data is sent, method ='get' defines what type of HTTP method)
+	Creates a form within HTML, contains elements like:
+	<label>
+	<input type = "" name = "" placeholder = ""> defines type of input
+	<input type = "button" >
+
+<a href = " " > Used to create a hypelink to a source
+
+<p> Used to define a paragraph element 
+
+<b> Use to define text to be bold. 
+
+<textarea> is a text area that can hold an unlimited number of characters, and the text renders in a fixed-width font.
+
+CSS:
+	Cascading Style Sheets
+
+	body{ } //Selecting an element by its tag, in this case the entirety of the tags within the body 
+	
+	.hello { } //Selecting an element via its class
+	
+	#hello { } //Selecting an elment via its id 
+
+	div > h5 { } //Selecting a child element,h5, within a div tag
+
+	h6.hello { } Selecting a h5 tag, with class name "hello"
+
+	
+
+
+
+	
+	
+
+
+
+
