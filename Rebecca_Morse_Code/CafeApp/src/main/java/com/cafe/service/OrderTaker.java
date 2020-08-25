@@ -62,6 +62,10 @@ public class OrderTaker {
 				stillOrdering = false;
 				checkout(order);
 				break;
+//			case "V":
+//				Communication.communicate("Enter Order Number");
+//				Management management = new Management();
+//				management.viewOrderById(Integer.parseInt(takeInput(sc)));
 			default:
 				Communication.communicate(ENTER_VALID_OPTION);
 				break;

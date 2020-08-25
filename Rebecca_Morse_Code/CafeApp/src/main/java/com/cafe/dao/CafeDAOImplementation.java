@@ -92,7 +92,7 @@ public class CafeDAOImplementation implements CafeDAOInterface {
 		Map<FoodItem, Integer> orderMap = new HashMap<>();
 		String customerName = new String();
 				
-		String sql = "	co.customer_name, " + 
+		String sql = "select co.customer_name, " + 
 				"	fi.item_id, " + 
 				"	fi.dish_name, " + 
 				"	fi.dish_category, " + 
