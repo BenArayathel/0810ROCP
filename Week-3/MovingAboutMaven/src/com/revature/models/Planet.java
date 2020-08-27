@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-package main.java.com.revature.models;
 
-public class Planet {
-
-	public Planet(String string) {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-=======
 package com.revature.models;
 
 public class Planet {
@@ -41,5 +31,4 @@ public class Planet {
 	
 	
 
->>>>>>> 6bb79a10fcb3e78822c11a0c9ba3e0884ef93279
 }
