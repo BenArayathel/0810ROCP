@@ -3,17 +3,20 @@ package com.revature.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.revature.models.Planet;
 
 
 public class DirectServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside doGet Direct ");
+		
+		
 		
 		response.setContentType("text/html"); //This is unnecessary, because by default the content is text/html
 		
@@ -36,6 +39,10 @@ public class DirectServlet extends HttpServlet {
 		doGet(request, response);
 		
 		
+	}
+	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Planet p = new Planet();
 	}
 
 }
