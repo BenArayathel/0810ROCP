@@ -1,5 +1,7 @@
+package main.java;
 
 
-public class Menu {
-
+public class Menu{
+	
 }
+

@@ -1,4 +1,4 @@
-package com.cafe;
+package main.java.com.cafe;
 
 public class FoodDelivery {
 	

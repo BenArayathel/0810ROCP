@@ -1,4 +1,4 @@
-package com.revature;
+package main.java.com.revature;
 
 public class Driver {
 
