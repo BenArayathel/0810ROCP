@@ -14,17 +14,14 @@
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/DirectServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/SuperDirect</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/DirectReloaded</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>IndirectServlet</display-name>
@@ -34,5 +31,25 @@
   <servlet-mapping>
     <servlet-name>IndirectServlet</servlet-name>
     <url-pattern>/IndirectServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlanetGenerator</display-name>
+    <servlet-name>PlanetGenerator</servlet-name>
+    <servlet-class>com.revature.servlets.PlanetGenerator</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanetGenerator</servlet-name>
+    <url-pattern>/PlanetGenerator</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Objecty</display-name>
+    <servlet-name>Objecty</servlet-name>
+    <servlet-class>com.revature.servlets.Objecty</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Objecty</servlet-name>
+    <url-pattern>/Objecty</url-pattern>
   </servlet-mapping>
 </web-app>
