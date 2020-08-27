@@ -1,4 +1,4 @@
-package com.revature.dao;
+package main.java.com.revature.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.model.Planet;
-import com.revature.util.ConnectionFactory;
+import main.java.com.revature.model.Planet;
+import main.java.com.revature.util.ConnectionFactory;
 
 public class PlanetDAOImpl implements PlanetDAO{
 

@@ -1,10 +1,10 @@
-package com.revature;
+package main.java.com.revature;
 
 import java.util.List;
 
-import com.revature.dao.PlanetDAO;
-import com.revature.dao.PlanetDAOImpl;
-import com.revature.model.Planet;
+import main.java.com.revature.dao.PlanetDAO;
+import main.java.com.revature.dao.PlanetDAOImpl;
+import main.java.com.revature.model.Planet;
 
 public class Driver {
 

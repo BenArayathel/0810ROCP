@@ -1,6 +1,6 @@
-package com.revature.service;
+package main.java.com.revature.service;
 
-import com.revature.model.Planet;
+import main.java.com.revature.model.Planet;
 
 public class PlanetStuff {
 

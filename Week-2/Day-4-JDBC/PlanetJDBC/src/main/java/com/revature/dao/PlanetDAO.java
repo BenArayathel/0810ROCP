@@ -1,8 +1,8 @@
-package com.revature.dao;
+package main.java.com.revature.dao;
 
 import java.util.List;
 
-import com.revature.model.Planet;
+import main.java.com.revature.model.Planet;
 
 public interface PlanetDAO {
 	

@@ -1,4 +1,4 @@
-package com.revature.model;
+package main.java.com.revature.model;
 
 public class Planet {
 	
