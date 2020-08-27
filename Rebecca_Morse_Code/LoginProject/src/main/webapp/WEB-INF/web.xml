@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>LoginProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  <display-name>Login Fail</display-name>
+  <servlet-name>Fail</servlet-name>
+  <servlet-class>com.revature.servlets.Fail</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Fail</servlet-name>
+  	<url-pattern>/fail</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <display-name>Login</display-name>
+  <servlet-name>Login</servlet-name>
+  <servlet-class>com.revature.servlets.Login</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <display-name>Logout</display-name>
+  <servlet-name>Logout</servlet-name>
+  <servlet-class>com.revature.servlets.Logout</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Logout</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <display-name>Success</display-name>
+  <servlet-name>Success</servlet-name>
+  <servlet-class>com.revature.servlets.Success</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Success</servlet-name>
+  	<url-pattern>/success</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
