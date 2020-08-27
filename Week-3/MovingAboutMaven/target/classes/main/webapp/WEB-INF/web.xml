@@ -14,17 +14,14 @@
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/DirectServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/SuperDirect</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>DirectServlet</servlet-name>
     <url-pattern>/DirectReloaded</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>IndirectServlet</display-name>
@@ -34,5 +31,25 @@
   <servlet-mapping>
     <servlet-name>IndirectServlet</servlet-name>
     <url-pattern>/IndirectServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CookieServlet</display-name>
+    <servlet-name>CookieServlet</servlet-name>
+    <servlet-class>main.java.com.revature.servlets.CookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieServlet</servlet-name>
+    <url-pattern>/CookieServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SessionServlet</display-name>
+    <servlet-name>SessionServlet</servlet-name>
+    <servlet-class>main.java.com.revature.esrvlets.SessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionServlet</servlet-name>
+    <url-pattern>/SessionServlet</url-pattern>
   </servlet-mapping>
 </web-app>
