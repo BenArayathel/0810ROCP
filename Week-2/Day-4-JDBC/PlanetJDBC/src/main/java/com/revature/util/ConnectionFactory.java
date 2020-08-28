@@ -43,18 +43,22 @@ public class ConnectionFactory {
 	 */
 	
 	
-//	private static final String URL = "jdbc:postgresql://localhost/postgres";
-//
-//	private static final String USERNAME = System.getenv("DB_USERNAME");
-//	private static final String PASSWORD = System.getenv("DB_PASSWORD");
-	
+	private static final String URL = "jdbc:postgresql://localhost/postgres";
+
+	private static final String USERNAME = System.getenv("DB_USERNAME");
+	private static final String PASSWORD = System.getenv("DB_PASSWORD");
+	private static Connection conn;
 	
 	public static Connection getConnection() {
 		
-		Connection conn = null;
+		
 		
 		try {
-			conn = DriverManager.getConnection(url,username,password);
+			//implementing singleton design pattern
+			if(conn == null) {
+				conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
