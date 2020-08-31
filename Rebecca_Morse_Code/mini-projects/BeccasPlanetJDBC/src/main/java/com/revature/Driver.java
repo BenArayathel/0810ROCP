@@ -16,6 +16,10 @@ public class Driver {
 //		pDao.insertPlanet(new Planet(0, "Test","Test", false, 100));
 		
 		System.out.println(myListOfPlanet);
+		
+		PlanetDAOImplementation pd = new PlanetDAOImplementation();
+		pd.doMath();
+		
 	}
 
 }

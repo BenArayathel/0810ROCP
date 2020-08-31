@@ -143,5 +143,12 @@ List<Planet> planets  = new ArrayList<>(); //I might not have a unique constrain
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public double doMath() {
+		double randomNumber = Math.random();
+		double otherNumber = Math.pow(2.0, randomNumber);
+	
+		System.out.println(otherNumber);
+		return otherNumber;
+	}
 
 }
