@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>HelloFrontController</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 
+  		Web.xml:
+  		A configuration file, that stores meta data about how to handle requests to the project 
+  		(and thus the server).
+  		A table of contents that is easy for a computer and a human to read.
+  		
+  	What is xml? (look up the difference between html and xml)
+  		eXstensible Markup Language, this is simlar to html. You have information stored within tags.
+  		XML is used for storing data, html is used for displaying information. 
+  		
+  		
+   -->
+  
+  <servlet>
+    <description></description>
+    <display-name>MasterServlet</display-name>
+    <servlet-name>MasterServlet</servlet-name>
+    <servlet-class>com.revature.servlets.MasterServlet</servlet-class>
+    <init-param> <!--  Inside a servlet tag -->
+  		<param-name>Greetings</param-name>
+  		<param-value>Guten Tag!</param-value>
+  	</init-param>
+    
+    <load-on-startup>-1</load-on-startup> <!-- Does not load on startup, servlet will activate when it gets a request. -->
+    <!--  <load-on-startup>1000</load-on-startup> Will specify the order the servlets get initiated. -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MasterServlet</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+    <url-pattern>/top/secret/api/*</url-pattern>
+  </servlet-mapping>
+  
+  <context-param> <!--  Outside any servlet tag -->
+  	<param-name>databaseUrl</param-name>
+  	<param-value>https://www/google.com</param-value>
+  </context-param>
+</web-app>
